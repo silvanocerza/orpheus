@@ -1,5 +1,5 @@
 use alsa::{
-    pcm::{Access, Format, HwParams, State},
+    pcm::{Access, Format, HwParams},
     Direction, ValueOr, PCM,
 };
 
@@ -23,20 +23,13 @@ fn main() {
     pcm.sw_params(&swp).unwrap();
 
     // Make a sine wave
-    let mut buf = [0i16; 1024];
+    let mut buf = [0i16; 512];
     for (i, a) in buf.iter_mut().enumerate() {
         *a = ((i as f32 * 1.0 * ::std::f32::consts::PI / 10000000.0).sin() * 10000.0) as i16
     }
 
-    // Play it back for an hour.
-    for _ in 0..6000 * 44100 / 1024 {
-        assert_eq!(io.writei(&buf[..]).unwrap(), 1024);
+    // Play it forever
+    loop {
+        assert_eq!(io.writei(&buf[..]).unwrap(), 512);
     }
-
-    // In case the buffer was larger than 2 seconds, start the stream manually.
-    if pcm.state() != State::Running {
-        pcm.start().unwrap()
-    };
-    // Wait for the stream to finish playback.
-    pcm.drain().unwrap();
 }
