@@ -16,6 +16,19 @@ In the end I strongly suggest you don't buy any soundbar from JBL/Harman, and al
 
 # Usage
 
-TODO
+The Rust code doesn't do anything too fancy, it's been adapted from the [`alsa` library example][alsa-lib-example].
+
+The binary is meant to be used as a systemd user service.
+
+Just run `setup.sh` to build the project, copy the binary and the service definition where the system can find it, and enable and start the service.
+
+After that the service will start every time you login with the user that ran the script. No superuser authorization required.
+
+If you want to disable everything and clean things up just run `teardown.sh`.
+
+# License
+
+The project is licensed under the [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html) license.
 
 [jbl-bar]: https://mm.jbl.com/soundbars/JBL+BAR+3.1.html
+[alsa-lib-example]: https://docs.rs/alsa/latest/alsa/pcm/index.html#example
