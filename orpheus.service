@@ -1,0 +1,8 @@
+[Unit]
+Description=Audio keep-alive service
+[Service]
+Type=simple
+TimeoutStartSec=0
+ExecStart=BIN_PATHorpheus
+[Install]
+WantedBy=default.target
