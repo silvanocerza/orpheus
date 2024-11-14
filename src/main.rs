@@ -8,10 +8,10 @@ fn main() {
 
     // Set hardware parameters: 44100 Hz / Mono / 16 bit
     let hwp = HwParams::any(&pcm).unwrap();
-    hwp.set_channels(1).unwrap();
-    hwp.set_rate(44100, ValueOr::Nearest).unwrap();
-    hwp.set_format(Format::s16()).unwrap();
     hwp.set_access(Access::RWInterleaved).unwrap();
+    hwp.set_format(Format::s16()).unwrap();
+    hwp.set_channels(1).unwrap();
+    hwp.set_rate_near(44100, ValueOr::Nearest).unwrap();
     pcm.hw_params(&hwp).unwrap();
     let io = pcm.io_i16().unwrap();
 
