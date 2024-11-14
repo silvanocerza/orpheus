@@ -25,7 +25,7 @@ fn main() {
     // Make a sine wave
     let mut buf = [0i16; 512];
     for (i, a) in buf.iter_mut().enumerate() {
-        *a = ((i as f32 * 1.0 * ::std::f32::consts::PI / 10000000.0).sin() * 10000.0) as i16
+        *a = ((i as f32 * 1.0 * ::std::f32::consts::PI / 1000000.0).sin() * 10000.0) as i16
     }
 
     // Play it forever
